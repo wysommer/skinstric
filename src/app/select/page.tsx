@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import Header from "@/components/Header";
+import BackButton from "@/components/BackButton";
 import { useState, useRef } from "react";
 
 const SQUARES = [
@@ -38,6 +39,14 @@ export default function SelectPage() {
   return (
     <div className="min-h-screen bg-white relative overflow-hidden flex flex-col">
       <Header />
+      {/* Top left info text */}
+      <div className="absolute left-8 top-20 text-left z-20">
+        <div className="text-black font-bold text-base mb-1">A.I. ANALYSIS</div>
+        <div className="text-gray-500 text-xs font-light leading-tight">
+          A.I. HAS ESTIMATED THE FOLLOWING.<br />
+          FIX ESTIMATED INFORMATION IF NEEDED.
+        </div>
+      </div>
       <div className="flex-1 flex flex-col items-center justify-center">
         <div className="relative" style={{ width: 400, height: 400 }}>
           {/* Pulsing border on hover */}
@@ -92,6 +101,10 @@ export default function SelectPage() {
             hovered={hovered === "bottom"}
             setHovered={v => handleHover(v ? "bottom" : null)}
           />
+        </div>
+        {/* Bottom left BackButton */}
+        <div className="absolute left-8 bottom-8 z-20">
+          <BackButton />
         </div>
       </div>
       <style jsx global>{`
