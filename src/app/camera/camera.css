@@ -1,0 +1,98 @@
+.camera-loading-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  font-family: 'Inter', sans-serif;
+}
+
+.rotating-squares {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.square {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border: 1.5px dashed #d9d9d9;
+  border-radius: 16px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  pointer-events: none;
+}
+.square1 { animation: rotate1 12s linear infinite; }
+.square2 { width: 180px; height: 180px; animation: rotate2 16s linear infinite reverse; }
+.square3 { width: 140px; height: 140px; animation: rotate3 20s linear infinite; }
+.square4 { width: 100px; height: 100px; animation: rotate4 24s linear infinite reverse; }
+
+@keyframes rotate1 { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+@keyframes rotate2 { 100% { transform: translate(-50%, -50%) rotate(-360deg); } }
+@keyframes rotate3 { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+@keyframes rotate4 { 100% { transform: translate(-50%, -50%) rotate(-360deg); } }
+
+.camera-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.setup-text {
+  margin-top: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #222;
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+
+.instructions-title {
+  margin-top: 40px;
+  color: #888;
+  font-size: 0.95rem;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+
+.instructions-row {
+  margin-top: 18px;
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  align-items: center;
+  color: #222;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.diamond {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 8px;
+  margin-left: 8px;
+  background: none;
+  border: 1.5px solid #888;
+  transform: rotate(45deg);
+  vertical-align: middle;
+}
+
+.instructions-row span:first-child {
+  margin-left: 0;
+} 

@@ -15,6 +15,7 @@ const SQUARES = [
 export default function ResultPage() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [showCameraModal, setShowCameraModal] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
@@ -195,7 +196,7 @@ export default function ResultPage() {
                 }}
               />
             ))}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 cursor-pointer" onClick={() => setShowCameraModal(true)}>
               <Image src="/images/camera.png" alt="Camera" width={100} height={100} />
             </div>
             {/* Camera line and caption */}
@@ -207,6 +208,19 @@ export default function ResultPage() {
                 </div>
               </div>
             </div>
+            {/* Camera Modal */}
+            {showCameraModal && (
+              <div className="fixed inset-0 z-50 flex items-center justify-center" style={{ background: "rgba(0,0,0,0.18)" }}>
+                <div className="bg-black text-white rounded-lg shadow-lg p-0 relative flex flex-col" style={{ width: 340, minHeight: 160 }}>
+                  <div className="px-6 pt-6 pb-4 text-lg font-semibold">ALLOW A.I. TO ACCESS YOUR CAMERA</div>
+                  <div className="border-t border-white w-full my-0" />
+                  <div className="flex justify-end items-center gap-4 px-6 py-4 mt-auto">
+                    <button className="text-gray-400 text-base font-medium cursor-pointer" onClick={() => setShowCameraModal(false)}>DENY</button>
+                    <button className="text-white text-base font-medium cursor-pointer" onClick={() => { setShowCameraModal(false); router.push('/camera'); }}>ALLOW</button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
           {/* Right Rotating Squares with Gallery Image */}
           <div className="relative flex items-center justify-center" style={{ width: 340, height: 340 }}>
