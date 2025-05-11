@@ -125,7 +125,7 @@ export default function TestingPage() {
         </div>
       </div>
       {step === "thankyou" && (
-        <div className="absolute right-8 bottom-8">
+        <div className="absolute right-8 bottom-8 animate-slide-in">
           <ProceedButton />
         </div>
       )}
@@ -133,6 +133,22 @@ export default function TestingPage() {
         @keyframes rotate0 { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
         @keyframes rotate1 { 100% { transform: translate(-50%, -50%) rotate(-360deg); } }
         @keyframes rotate2 { 100% { transform: translate(-50%, -50%) rotate(720deg); } }
+        
+        @keyframes slide-in {
+          0% {
+            opacity: 0;
+            transform: translateX(-50vw);
+          }
+          100% {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        .animate-slide-in {
+          animation: slide-in 0.6s ease-out forwards;
+        }
+        
         .dot {
           width: 14px;
           height: 14px;

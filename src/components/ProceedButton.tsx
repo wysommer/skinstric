@@ -1,12 +1,16 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 
-export default function ProceedButton() {
+interface ProceedButtonProps {
+  destination?: string;
+}
+
+export default function ProceedButton({ destination = '/result' }: ProceedButtonProps) {
   const router = useRouter();
   return (
     <button
       className="flex items-center gap-2 group focus:outline-none cursor-pointer"
-      onClick={() => router.push('/result')}
+      onClick={() => router.push(destination)}
       aria-label="Proceed to next step"
     >
       <span className="text-md text-black font-md tracking-wide group-hover:underline mr-4">PROCEED</span>
