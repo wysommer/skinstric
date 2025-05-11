@@ -3,6 +3,13 @@ import Header from "@/components/Header";
 import BackButton from "@/components/BackButton";
 import { useEffect, useState } from "react";
 
+// Add type definitions before the DemographicsSummary component
+type DemographicsData = {
+  race: Record<string, number>;
+  age: Record<string, number>;
+  gender: Record<string, number>;
+};
+
 function getDemographicsData() {
   if (typeof window !== "undefined") {
     const data = localStorage.getItem("skinstric-demographics");
@@ -40,7 +47,7 @@ export default function SummaryPage() {
   );
 }
 
-function DemographicsSummary({ data }: { data: any }) {
+function DemographicsSummary({ data }: { data: DemographicsData | null }) {
   const [selected, setSelected] = useState<'race' | 'age' | 'gender'>('race');
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   
@@ -138,7 +145,8 @@ function ConfidenceCircle({ percent }: { percent: number }) {
   // Simple SVG circle for now
   const r = 140;
   const c = 2 * Math.PI * r;
-  const pct = Math.max(0, Math.min(100, percent));
+  // Ensure percent is a valid number between 0 and 100
+  const validPercent = Number.isFinite(percent) ? Math.max(0, Math.min(100, percent)) : 0;
   return (
     <svg width={320} height={320}>
       <circle cx={160} cy={160} r={r} stroke="#e5e5e5" strokeWidth={4} fill="none" />
@@ -150,10 +158,10 @@ function ConfidenceCircle({ percent }: { percent: number }) {
         strokeWidth={4}
         fill="none"
         strokeDasharray={c}
-        strokeDashoffset={c - (pct / 100) * c}
+        strokeDashoffset={c - (validPercent / 100) * c}
         style={{ transition: 'stroke-dashoffset 0.6s' }}
       />
-      <text x="160" y="180" textAnchor="middle" fontSize="64" fill="#111">{pct}<tspan fontSize="32">%</tspan></text>
+      <text x="160" y="180" textAnchor="middle" fontSize="64" fill="#111">{validPercent}<tspan fontSize="32">%</tspan></text>
     </svg>
   );
 }

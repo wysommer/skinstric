@@ -4,13 +4,6 @@ import Header from "@/components/Header";
 import BackButton from "@/components/BackButton";
 import { useState, useRef } from "react";
 
-const SQUARES = [
-  { label: "DEMOGRAPHICS", key: "demographics", link: "/summary", dark: true },
-  { label: "COSMETIC CONCERNS", key: "cosmetic", link: null, dark: false },
-  { label: "SKIN TYPE DETAILS", key: "skin", link: null, dark: false },
-  { label: "WEATHER", key: "weather", link: null, dark: false },
-];
-
 export default function SelectPage() {
   const [hovered, setHovered] = useState<string | null>(null);
   const [pulseKey, setPulseKey] = useState(0);

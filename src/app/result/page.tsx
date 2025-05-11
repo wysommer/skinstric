@@ -2,7 +2,6 @@
 
 import Header from "@/components/Header";
 import BackButton from "@/components/BackButton";
-import ProceedButton from "@/components/ProceedButton";
 import Image from "next/image";
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
@@ -60,6 +59,7 @@ export default function ResultPage() {
       localStorage.setItem('skinstric-demographics', JSON.stringify(result.data));
       router.push("/select");
     } catch (e) {
+      console.error('Error processing image:', e);
       setLoading(false);
       alert("Failed to process image. Please try again.");
     }
