@@ -5,7 +5,7 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50">
       <div className="mx-8 pt-4 flex justify-between items-center">
         <nav className="hidden md:flex gap-4">
-          <a href="#" className="text-[10px] hover:opacity-70 transition-opacity font-bold">
+          <a href="/" className="text-[10px] hover:opacity-70 transition-opacity font-bold">
             SKINSTRIC
           </a>
           <p className="text-[10px] text-gray-500 transition-opacity">

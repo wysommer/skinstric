@@ -51,11 +51,13 @@ export default function ResultPage() {
     setLoading(true);
     try {
       const base64 = await getBase64FromUrl(selectedImage);
-      await fetch("https://us-central1-api-skinstric-ai.cloudfunctions.net/skinstricPhaseTwo", {
+      const res = await fetch("https://us-central1-api-skinstric-ai.cloudfunctions.net/skinstricPhaseTwo", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ image: base64 }),
       });
+      const result = await res.json();
+      localStorage.setItem('skinstric-demographics', JSON.stringify(result.data));
       router.push("/select");
     } catch (e) {
       setLoading(false);
