@@ -14,16 +14,20 @@ export default function CameraCapturePage() {
   const router = useRouter();
 
   React.useEffect(() => {
+    let stream: MediaStream | null = null;
+    
     async function setupCamera() {
       if (navigator.mediaDevices && videoRef.current) {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        stream = await navigator.mediaDevices.getUserMedia({ video: true });
         videoRef.current.srcObject = stream;
       }
     }
+    
     setupCamera();
+    
     return () => {
-      if (videoRef.current && videoRef.current.srcObject) {
-        (videoRef.current.srcObject as MediaStream).getTracks().forEach(track => track.stop());
+      if (stream) {
+        stream.getTracks().forEach(track => track.stop());
       }
     };
   }, []);
@@ -77,7 +81,7 @@ export default function CameraCapturePage() {
         const result = await res.json();
         localStorage.setItem('skinstric-demographics', JSON.stringify(result.data));
         router.push('/summary');
-      } catch (e) {
+      } catch {
         alert('Failed to process image. Please try again.');
       } finally {
         setLoading(false);
